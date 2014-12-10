@@ -179,18 +179,15 @@ def backtracking(node):
 
 def candidates(node):
     # TODO reordenar para optimizar candidatos. ahora es fuerza bruta
-
-    for cell in sorted(node.empty_cells(), key=criteria):
-        cell.value = Cell.BULB
-        yield node
-        cell.value = Cell.NOT_BULB
-        yield node
-        cell.value = Cell.EMPTY
+    cell = min(node.empty_cells(), key=criteria)
+    cell.value = Cell.BULB
+    yield node
+    cell.value = Cell.NOT_BULB
+    yield node
+    cell.value = Cell.EMPTY
 
 
 def criteria(cell):
-    can_bulb =
-    can_not_bulb =
     return 4 - sum(1 for x in cell.neighbours() if x in [0, 1, 2, 3, 4]), sum(1 for x in cell.watching())
 
 def main():
